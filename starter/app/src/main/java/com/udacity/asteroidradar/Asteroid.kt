@@ -7,8 +7,21 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 
+//data class Asteroid(
+//    val id: Long,
+//    val codename: String,
+//    val closeApproachDate: String,
+//    val absoluteMagnitude: Double,
+//    val estimatedDiameter: Double,
+//    val relativeVelocity: Double,
+//    val distanceFromEarth: Double,
+//    val isPotentiallyHazardous: Boolean
+//                    )
+
+@Parcelize
+@Entity (tableName = "asteroid_table")
 data class Asteroid(
-    val id: Long,
+    @PrimaryKey val id: Long,
     val codename: String,
     val closeApproachDate: String,
     val absoluteMagnitude: Double,
@@ -16,20 +29,7 @@ data class Asteroid(
     val relativeVelocity: Double,
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
-                    )
+): Parcelable
 
-
-//@Entity (tableName = "asteroid_entity")
-//data class AsteroidEntity(
-//    @PrimaryKey val id: Int,
-//    val codename: String
-////    val closeApproachDate: String,
-////    val absoluteMagnitude: Double,
-////    val estimatedDiameter: Double,
-////    val relativeVelocity: Double,
-////    val distanceFromEarth: Double,
-////    val isPotentiallyHazardous: Boolean
-//)
-
-@Entity(tableName = "word_table")
-data class AsteroidEntity(@PrimaryKey @ColumnInfo(name = "word") val word: String)
+//@Entity(tableName = "word_table")
+//data class AsteroidEntity(@PrimaryKey @ColumnInfo(name = "word") val word: String)

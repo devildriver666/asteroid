@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.udacity.asteroidradar.AsteroidEntity
+import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.main.MainFragment
+
 
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = [AsteroidEntity::class], version = 1)
+@Database(entities = [Asteroid::class], version = 1)
 abstract class AsteroidDatabase : RoomDatabase() {
 
     abstract fun asteroidDao(): AsteroidDAO
@@ -19,7 +21,7 @@ abstract class AsteroidDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AsteroidDatabase? = null
 
-        fun getDatabase(context: Context, applicationScope: CoroutineScope): AsteroidDatabase {
+        fun getDatabase(context: Context,scope: CoroutineScope): AsteroidDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
