@@ -9,6 +9,7 @@ import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.util.*
 
 class MainViewModel(private val repository: AsteroidRepository) : ViewModel() {
 
@@ -25,12 +26,17 @@ class MainViewModel(private val repository: AsteroidRepository) : ViewModel() {
     private fun loadAsteroid() {
         try {
             viewModelScope.launch {
-                var result = AsteroidService.retrofitService.getAsteroidList("2020-12-11",
-                    "2020-12-18" ,
+                var result = AsteroidService.retrofitService.getAsteroidList("2020-12-29",
+                    "2021-01-04" ,
                     "${Constants.API_KEY}")
+              //  var result = AsteroidService.retrofitService.getList()
                 val jsonObject = JSONObject(result)
+                Log.v("I am here", jsonObject.toString())
+
                 val asteroidObject =  parseAsteroidsJsonResult(jsonObject)
                 println(asteroidObject)
+                Log.v("I am here1", asteroidObject.toString())
+
             }
         } catch (e: Exception) {
             Log.i("Respose Fail","$e")

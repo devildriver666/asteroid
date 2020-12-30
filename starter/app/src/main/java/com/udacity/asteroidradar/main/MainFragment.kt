@@ -18,13 +18,6 @@ import kotlinx.coroutines.SupervisorJob
 class MainFragment : Fragment() {
 
 
-    //private val viewModel: MainViewModel by activityViewModels()
-
-//    private lateinit var viewModel: MainViewModel
-//
-//    private  var viewModelFactory =  AsteroidViewModelFactory((activity?.application as AsteroidApplication).repository)
-
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -43,6 +36,7 @@ class MainFragment : Fragment() {
 
         val adapter = AsteroidListAdapter()
         binding.asteroidRecycler.adapter = adapter
+
         return binding.root
     }
 

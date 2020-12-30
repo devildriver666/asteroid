@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.api
+ package com.udacity.asteroidradar.api
 
 import android.util.Log
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -25,13 +25,13 @@ import java.util.concurrent.TimeUnit
 
 //val logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 ////logging.level = (HttpLoggingInterceptor.Level.BASIC)
-val client = OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS).build()
+val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS).build()
 
 
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
-    .baseUrl(Constants.BASE_URL).client(client)
+    .baseUrl(Constants.BASE_URL)
     .build()
 
 interface AsteroidAPIService {
@@ -39,6 +39,9 @@ interface AsteroidAPIService {
     suspend fun getAsteroidList(@Query("start_date") start_date:String,
                         @Query("start_date") end_date:String,
                         @Query("api_key") api_key:String): String
+
+    @GET("https://api.nasa.gov/neo/rest/v1/feed?start_date=2020-12-11&end_date=2020-12-18&api_key=IJbXCDcjKVqhS4Pv2DZjyYewkPvEKXE4nwgGyzac")
+    suspend fun getList(): String
 }
 
 object AsteroidService {
